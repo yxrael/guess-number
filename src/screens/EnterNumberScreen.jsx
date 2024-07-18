@@ -10,34 +10,42 @@ export const EnterNumberScreen = ({
         setModalStatus,
         mensajeModal,
         setMensajeModal,
-        setPantallaActiva }) => {
+        setPantallaActiva,
+        setNumeroElegido   
+}) => {
 
+    const [listOfGuess, setListOfGuess] = useState([]);
     const [text, setText] = useState('');
     const onChangeText = (texto) => {
+        // if( texto.charAt( texto.length-1) === NaN) {
+        //     setText( texto.substring(0, texto.length - 1) );
+        //     return
+        // }
         setText(texto);
     }
 
     const onPressButton = () => {
+
         const choosenNumber = parseInt( text, 10 );
         if( !choosenNumber || choosenNumber === 'Nan' ) return;
         if( choosenNumber < 1 || choosenNumber > 99 ) {
             setMensajeModal('Debe ser entre 1 y 99');
             setModalStatus( true ); 
         } else {
-            console.log( choosenNumber );
+            setNumeroElegido(choosenNumber);
             setPantallaActiva('OpponentGuess')
         }
 }
 
-    const onKeyPress = (key) => {
-        console.log(key)
-    }
+    // const onKeyPress = (key) => {
+    //     console.log('hoh')
+    // }
 
   return (
     <View>
         <Text>Piensa un número entre 1 y 99</Text>
         <TextInput
-            onKeyPress={ onKeyPress }
+            // onKeyPress={ onKeyPress }
             style={ styles.textInput }
             onChangeText={ onChangeText }
             value={ text }

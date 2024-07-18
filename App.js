@@ -14,6 +14,7 @@ export default function App() {
   // const [gameStarted, setGameStarted] = useState(false);
   const [modalStatus, setModalStatus] = useState(false);
   const [mensajeModal, setMensajeModal] = useState('');
+  const [numeroElegido, setNumeroElegido] = useState(null);
 
   // useEffect(() => {
   //   if( gameStarted === false ) setPantallaActiva('EnterNumber');
@@ -30,13 +31,15 @@ export default function App() {
             mensajeModal={ mensajeModal }
             setMensajeModal={ setMensajeModal }
             setPantallaActiva={ setPantallaActiva }
+            setNumeroElegido={ setNumeroElegido }
             />
       }
 
       {
         (pantallaActiva === 'OpponentGuess') && 
           <OpponentGuessScreen 
-          setPantallaActiva={ setPantallaActiva }  
+          setPantallaActiva={ setPantallaActiva }
+          numeroElegido={ numeroElegido }  
           />
       }
 

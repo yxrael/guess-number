@@ -1,9 +1,9 @@
-import { Button, View } from "react-native"
+import { Button, View, Text } from "react-native"
 
 
 
 
-const OpponentGuessScreen = ({ setPantallaActiva }) => {
+const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido }) => {
 
 
     const onPressButton = () => {
@@ -12,6 +12,7 @@ const OpponentGuessScreen = ({ setPantallaActiva }) => {
 
   return (
     <View>
+            <Text>Número elegido: { numeroElegido }</Text>
             <Button
                 title='Back'
                 onPress={ onPressButton }
