@@ -29,14 +29,22 @@ export const EnterNumberScreen = ({
         }
 }
 
+    const onKeyPress = (key) => {
+        console.log(key)
+    }
+
   return (
     <View>
         <Text>Piensa un número entre 1 y 99</Text>
         <TextInput
+            onKeyPress={ onKeyPress }
             style={ styles.textInput }
             onChangeText={ onChangeText }
             value={ text }
             placeholder='Elige un número'
+            // inputMode='numeric'
+            keyboardType='numeric'
+            maxLength={ 2 }
         />
         <View>
             <Button

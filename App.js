@@ -34,7 +34,10 @@ export default function App() {
       }
 
       {
-        (pantallaActiva === 'OpponentGuess') && <OpponentGuessScreen />
+        (pantallaActiva === 'OpponentGuess') && 
+          <OpponentGuessScreen 
+          setPantallaActiva={ setPantallaActiva }  
+          />
       }
 
       {

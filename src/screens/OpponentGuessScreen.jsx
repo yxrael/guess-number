@@ -1,11 +1,22 @@
-import { Text } from "react-native"
+import { Button, View } from "react-native"
 
 
 
 
-const OpponentGuessScreen = () => {
+const OpponentGuessScreen = ({ setPantallaActiva }) => {
+
+
+    const onPressButton = () => {
+        setPantallaActiva('EnterNumber');
+    }
+
   return (
-    <Text>OpponentGuessScreen</Text>
+    <View>
+            <Button
+                title='Back'
+                onPress={ onPressButton }
+            />
+        </View>
   )
 }
 
