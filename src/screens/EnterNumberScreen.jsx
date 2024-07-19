@@ -14,20 +14,20 @@ export const EnterNumberScreen = ({
         setNumeroElegido   
 }) => {
 
-    const [listOfGuess, setListOfGuess] = useState([]);
     const [text, setText] = useState('');
     const onChangeText = (texto) => {
-        // if( texto.charAt( texto.length-1) === NaN) {
-        //     setText( texto.substring(0, texto.length - 1) );
-        //     return
-        // }
+   
         setText(texto);
     }
 
     const onPressButton = () => {
 
         const choosenNumber = parseInt( text, 10 );
-        if( !choosenNumber || choosenNumber === 'Nan' ) return;
+        if( !choosenNumber || Number.isNaN(choosenNumber) ) {
+            setMensajeModal('Debe ser un número entre 1 y 99');
+            setModalStatus( true );
+            return
+        };
         if( choosenNumber < 1 || choosenNumber > 99 ) {
             setMensajeModal('Debe ser entre 1 y 99');
             setModalStatus( true ); 
