@@ -1,6 +1,7 @@
- import { Button, View, Text, FlatList, StyleSheet } from "react-native"
+ import { Button, View, Text, FlatList, Pressable } from "react-native"
 import { getRandomNumber } from "../helpers/getRandomNumber";
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
+import { styles } from "../styles/estilos";
 
 let min = 1;
 let max = 99
@@ -8,49 +9,38 @@ let guessNumber;
 const chancesNumber = 10;
 
 
-const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido }) => {
+const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal, setModalStatus }) => {
 
   const [listOfGuess, setListOfGuess] = useState([]);
 
-
-  
-  // const guessNumber = useCallback(() => getRandomNumber( min, max ), []);
-   
-
-  // console.log(listOfGuess)
-
   useEffect(() => {
-    guessNumber = getRandomNumber( min, max );
-    console.log('Tu número es ', guessNumber);
-    setListOfGuess( [ ...listOfGuess, { number: guessNumber, id: Math.random() } ])
+    newNumber( min, max );
   }, []);
 
- 
     const onPressBackButton = () => {
         setPantallaActiva('EnterNumber');
     }
 
-    const onPressTryButton = () => {
-      guessNumber = getRandomNumber( min, max );
-      console.log(guessNumber)
-      setListOfGuess( [ ...listOfGuess, { number: guessNumber, id: Math.random() } ]);
-      // setListOfGuess( [...listOfGuess, { number: guessNumber, id: Math.random() }]);
-      console.log(listOfGuess);
-    }
 
-    const onPressHigherLowerButton = (params) => {
-      switch (params) {
+    const onPressHigherLowerButton = (highLow) => {
+      switch (highLow) {
         case 'higher':
-          console.log('Higher than: ', guessNumber );
-          guessNumber = getRandomNumber( guessNumber, max );
-          setListOfGuess( [ ...listOfGuess, { number: guessNumber, id: Math.random() } ]);
-          console.log('Nuevo: ', guessNumber);
+          if( guessNumber > numeroElegido ) {
+            setMensajeModal(['¿Estás seguro de que es mayor?','','Me has pillado']);
+            setModalStatus( true );
+            break
+          }
+          min = (listOfGuess[ listOfGuess.length -1].number) +1;
+          newNumber( min, max );
           break;
         case 'lower':
-          console.log('Lower than: ', guessNumber );
-          guessNumber = getRandomNumber( min, guessNumber );
-          setListOfGuess( [ ...listOfGuess, { number: guessNumber, id: Math.random() } ]);
-          console.log('Nuevo: ', guessNumber);
+          if( guessNumber < numeroElegido ) {
+            setMensajeModal(['¿Estás seguro de que es menor?','','Me has pillado']);
+            setModalStatus( true );
+            break
+          }
+          max = (listOfGuess[ listOfGuess.length -1].number) -1;
+          newNumber( min, max );
           break;
         
         default:
@@ -58,11 +48,24 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido }) => {
       }
     }
 
+    const newNumber = ( min, max) => {
+      guessNumber = getRandomNumber( min, max );
+      setListOfGuess( [ ...listOfGuess, { number: guessNumber, id: Math.random() } ]);
+      if( guessNumber === numeroElegido ){
+        nuevoJuego();
+      }
+    }
+
+    const nuevoJuego = () => {
+      min = 1;
+      max = 99;
+      setMensajeModal([`Habías elegido el nº ${ numeroElegido }`,`He necesitado ${ listOfGuess.length } intentos`, 'Jugar de nuevo']);
+      setModalStatus( true );
+      // setPantallaActiva('GameOver');
+    }
+// style={ styles.container }
   return (
-    <View style={ styles.container }>
-      <View style={ styles.elegido }>
-        <Text>(Número elegido: { numeroElegido })</Text>
-      </View>
+    <View >
 
       <View style={ styles.intentos }>
             {
@@ -75,23 +78,34 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido }) => {
             }
       </View>
       <View style={ styles.mayorMenor }>
-            <Button
-                title='Es mayor'
-                onPress={ () => onPressHigherLowerButton('higher') }
-            />
-            <Button
-                title='Es menor'
-                onPress={ () => onPressHigherLowerButton('lower') }
-            />
+        <View style={ styles.botones }>
 
-        
+            <Pressable
+                  style={ styles.button }
+                  onPress={ () => onPressHigherLowerButton('higher') }
+            >
+                  <View style={ styles.buttonText }>
+                      <Text >Es mayor</Text>
+                  </View>
+                  
+            </Pressable>
+            <Pressable
+                  style={ styles.button }
+                  onPress={ () => onPressHigherLowerButton('lower') }
+            >
+                  <View style={ styles.buttonText }>
+                      <Text >Es menor</Text>
+                  </View>
+                  
+            </Pressable>
+        </View>
+            
       </View>
 
       <View>
             {
               ( listOfGuess.length > 0 ) && (
                 <>
-                  {/* <Text>Tu número es el { guessNumber }</Text> */}
                   <Text>Nº de intentos: { listOfGuess.length }</Text>
                 </>
               )
@@ -100,52 +114,14 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido }) => {
                 title='Back'
                 onPress={ onPressBackButton }
             />
-
-        
+   
       </View>
-
-            
-            {/* <Button
-                title='Déjame intentar'
-                onPress={ onPressTryButton }
-            /> */}
-
-           
-
-            
+    
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-    height: 'auto',
-    backgroundColor: 'pink',
-    alignItems: 'center',
-    // justifyContent: 'space-evenly',
-    margin: 20,
-    paddingVertical: 50
-  },
-  elegido: {
-    marginBottom: 80,
-    backgroundColor: 'red',
-    width: '100%'
-  },
-  intentos: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: 'green'
-    // alignSelf: 'center'
-  },
-  mayorMenor: {
-    // flex: 1,
-    flexDirection: 'row',
-    // height: 100,
-    // width: 200
-  }
-});
+
 
 export default OpponentGuessScreen
 
