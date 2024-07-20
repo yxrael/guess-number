@@ -31,13 +31,14 @@ export const styles = StyleSheet.create({
     },
     buttonText: {
         backgroundColor: '#ff7f50',
-        padding: 2,
         borderRadius: 5,
-        padding: 8,
+        padding: 10,
+        margin: 20,
         elevation: 10
     },
     textInput: {
         height: 40,
+        width: '80%',
         borderWidth: 1,
         padding: 10,
         borderRadius: 5,
@@ -53,26 +54,47 @@ export const styles = StyleSheet.create({
         // margin: 20,
         // paddingVertical: 50
       },
+      rondaAdivinacionContainer: {
+        backgroundColor: 'red',
+        width: '100%',
+        height: '80%',
+        margin: 50,
+        // flex: 1,
+        alignContent: 'space-between',
+        alignItems: 'center'
+      },
       elegido: {
         marginBottom: 80,
         backgroundColor: 'red',
         width: '100%'
       },
       intentos: {
-        flex: 3,
+        // flex: 3,
         width: '80%',
-        height:'60%',
-        backgroundColor: '#ffc0cb'
+        paddingHorizontal: 50,
+        paddingVertical: 20,
+        marginBottom: 30,
+        // height:'60%',
+        backgroundColor: '#ffc0cb',
+        borderRadius: 10
         // alignSelf: 'center'
       },
       mayorMenor: {
-        flex: 1,
-        // flexDirection: 'row',
+        height: 'auto',
+        width: 'auto',
+        // backgroundColor: 'red',
+        // alignContent: 'center',
+        alignItems: 'center'
+        // flex: 1,
         // height: 100,
         // width: 200
       },
       botones: {
-       backgroundColor: '#dda0dd'
+        width: '50%',
+      //  backgroundColor: '#dda0dd',
+      //  alignContent: 'center',
+      //  justifyContent: 'center',
+        alignItems: 'center'
         
       }
 })

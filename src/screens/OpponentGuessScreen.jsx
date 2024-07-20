@@ -21,7 +21,6 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal
         setPantallaActiva('EnterNumber');
     }
 
-
     const onPressHigherLowerButton = (highLow) => {
       switch (highLow) {
         case 'higher':
@@ -65,7 +64,7 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal
     }
 // style={ styles.container }
   return (
-    <View >
+    <View styles={ styles.rondaAdivinacionContainer }>
 
       <View style={ styles.intentos }>
             {
@@ -103,13 +102,13 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal
       </View>
 
       <View>
-            {
+            {/* {
               ( listOfGuess.length > 0 ) && (
                 <>
                   <Text>Nº de intentos: { listOfGuess.length }</Text>
                 </>
               )
-            }
+            } */}
             <Button
                 title='Back'
                 onPress={ onPressBackButton }
