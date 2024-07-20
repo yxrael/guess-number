@@ -12,7 +12,6 @@ export const ModalScreen = ({ mensaje, modalStatus, setModalStatus = '' }) => {
         setModalStatus( false );
     };
 
-
   return (
     <Modal 
         transparent={true}

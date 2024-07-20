@@ -1,4 +1,4 @@
- import { Button, View, Text, FlatList, Pressable } from "react-native"
+ import { Button, View, Text, FlatList, Pressable, ScrollView } from "react-native"
 import { getRandomNumber } from "../helpers/getRandomNumber";
 import { useEffect, useState } from "react";
 import { styles } from "../styles/estilos";
@@ -7,7 +7,6 @@ let min = 1;
 let max = 99
 let guessNumber;
 const chancesNumber = 10;
-
 
 const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal, setModalStatus }) => {
 
@@ -60,25 +59,27 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal
       max = 99;
       setMensajeModal([`Habías elegido el nº ${ numeroElegido }`,`He necesitado ${ listOfGuess.length } intentos`, 'Jugar de nuevo']);
       setModalStatus( true );
-      // setPantallaActiva('GameOver');
     }
-// style={ styles.container }
+
   return (
     <View styles={ styles.rondaAdivinacionContainer }>
 
-      <View style={ styles.intentos }>
+      <ScrollView style={ styles.intentos }>
             {
               (listOfGuess.length > 0 ) &&
                 <FlatList
                   data={ listOfGuess }
                   keyExtractor={ ( item ) => item.id.toString() }
                   renderItem={ ({item} ) => <Text>Creo que es el: { item.number }</Text>}
+                  horizontal={ false }
+                  scrollEnabled={ false }
+                  showsVerticalScrollIndicator={ true }
                 />
             }
-      </View>
+      </ScrollView>
+      
       <View style={ styles.mayorMenor }>
         <View style={ styles.botones }>
-
             <Pressable
                   style={ styles.button }
                   onPress={ () => onPressHigherLowerButton('higher') }
@@ -97,25 +98,20 @@ const OpponentGuessScreen = ({ setPantallaActiva, numeroElegido, setMensajeModal
                   </View>
                   
             </Pressable>
-        </View>
-            
+        </View>      
       </View>
 
       <View>
-            {/* {
-              ( listOfGuess.length > 0 ) && (
-                <>
-                  <Text>Nº de intentos: { listOfGuess.length }</Text>
-                </>
-              )
-            } */}
-            <Button
-                title='Back'
-                onPress={ onPressBackButton }
-            />
+            <Pressable
+                  style={ styles.button }
+                  onPress={ onPressBackButton }
+            >
+                  <View style={ styles.buttonBack }>
+                      <Text >Volver</Text>
+                  </View>       
+            </Pressable>
    
       </View>
-    
     </View>
   )
 }

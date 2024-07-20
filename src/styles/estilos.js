@@ -7,11 +7,9 @@ export const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        // marginTop: 22,
         backgroundColor: '#ffdab9'
     },
     modalView: {
-        // margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
         padding: 35,
@@ -36,6 +34,15 @@ export const styles = StyleSheet.create({
         margin: 20,
         elevation: 10
     },
+    buttonBack: {
+        backgroundColor: '#48d1cc',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 100,
+        margin: 20,
+        elevation: 10,
+        alignItems: 'center'
+    },
     textInput: {
         height: 40,
         width: '80%',
@@ -51,13 +58,11 @@ export const styles = StyleSheet.create({
         backgroundColor: 'pink',
         alignItems: 'center',
         justifyContent: 'center',
-        // margin: 20,
-        // paddingVertical: 50
       },
       rondaAdivinacionContainer: {
         backgroundColor: 'red',
         width: '100%',
-        height: '80%',
+        height: '100%',
         margin: 50,
         // flex: 1,
         alignContent: 'space-between',
@@ -69,31 +74,24 @@ export const styles = StyleSheet.create({
         width: '100%'
       },
       intentos: {
-        // flex: 3,
-        width: '80%',
+        marginTop: 150,
         paddingHorizontal: 50,
         paddingVertical: 20,
-        marginBottom: 30,
-        // height:'60%',
+        marginBottom: 50,
         backgroundColor: '#ffc0cb',
-        borderRadius: 10
-        // alignSelf: 'center'
+        borderRadius: 10,
+        alignSelf: 'center',
       },
       mayorMenor: {
         height: 'auto',
         width: 'auto',
-        // backgroundColor: 'red',
-        // alignContent: 'center',
+
         alignItems: 'center'
-        // flex: 1,
-        // height: 100,
-        // width: 200
+
       },
       botones: {
-        width: '50%',
-      //  backgroundColor: '#dda0dd',
-      //  alignContent: 'center',
-      //  justifyContent: 'center',
+        flexDirection: 'row',
+        marginBottom: 50,
         alignItems: 'center'
         
       }

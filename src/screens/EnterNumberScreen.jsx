@@ -7,9 +7,7 @@ import { styles } from '../styles/estilos';
 
 
 export const EnterNumberScreen = ({
-        modalStatus,
         setModalStatus,
-        mensajeModal,
         setMensajeModal,
         setPantallaActiva,
         setNumeroElegido   
@@ -37,21 +35,15 @@ export const EnterNumberScreen = ({
         }
 }
 
-    // const onKeyPress = (key) => {
-    //     console.log('hoh')
-    // }
-
   return (
     <View style={ styles.centeredView }>
         <View style={ styles.modalView }>
             <Text>Piensa un número entre 1 y 99</Text>
             <TextInput
-                // onKeyPress={ onKeyPress }
                 style={ styles.textInput }
                 onChangeText={ onChangeText }
                 value={ text }
                 placeholder='Elige un número'
-                // inputMode='numeric'
                 keyboardType='numeric'
                 maxLength={ 2 }
             />
@@ -67,11 +59,6 @@ export const EnterNumberScreen = ({
                     
                 </Pressable>
             </View>
-            {/* <ModalScreen 
-                mensaje={ mensajeModal }
-                modalStatus={ modalStatus }
-                setModalStatus={ setModalStatus }
-            /> */}
         </View>
     </View>
   )
